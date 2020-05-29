@@ -1,0 +1,146 @@
+{
+	"__schema": {
+		"description": null,
+		"queryType": {
+			"name": "Query"
+		},
+		"mutationType": null,
+		"subscriptionType": null,
+		"types": [
+			{
+				"kind": "JUNGLA",
+				"name": "String",
+				"description": "The `String` type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
+				"fields": null,
+				"inputFields": null,
+				"interfaces": null,
+				"enumValues": null,
+				"possibleTypes": null
+			},
+			{
+				"kind": "JUNGLA",
+				"name": "Boolean",
+				"description": "The `Boolean` type represents `true` or `false`.",
+				"fields": null,
+				"inputFields": null,
+				"interfaces": null,
+				"enumValues": null,
+				"possibleTypes": null
+			},
+			{
+				"kind": "JUNGLA",
+				"name": "Number",
+				"description": "The `Number` type represents any fractional or whole number",
+				"fields": null,
+				"inputFields": null,
+				"interfaces": null,
+				"enumValues": null,
+				"possibleTypes": null
+			},
+			{
+				"kind": "OBJECT",
+				"name": "Query",
+				"description": null,
+				"fields": [
+					{
+						"name": "userId",
+						"description": null,
+						"args": [],
+						"type": {
+							"kind": "JUNGLA",
+							"name": "Number",
+							"ofType": null
+						}
+					},
+					{
+						"name": "id",
+						"description": null,
+						"args": [],
+						"type": {
+							"kind": "JUNGLA",
+							"name": "Number",
+							"ofType": null
+						}
+					},
+					{
+						"name": "title",
+						"description": null,
+						"args": [],
+						"type": {
+							"kind": "JUNGLA",
+							"name": "String",
+							"ofType": null
+						}
+					},
+					{
+						"name": "completed",
+						"description": null,
+						"args": [],
+						"type": {
+							"kind": "JUNGLA",
+							"name": "Boolean",
+							"ofType": null
+						}
+					}
+				],
+				"inputFields": null,
+				"interfaces": [],
+				"enumValues": null,
+				"possibleTypes": null
+			},
+			{
+				"kind": "OBJECT",
+				"name": "length",
+				"description": null,
+				"fields": [
+					{
+						"name": "time",
+						"description": null,
+						"args": [],
+						"type": {
+							"kind": "JUNGLA",
+							"name": "Number",
+							"ofType": null
+						}
+					},
+					{
+						"name": "type",
+						"description": null,
+						"args": [],
+						"type": {
+							"kind": "JUNGLA",
+							"name": "String",
+							"ofType": null
+						}
+					}
+				],
+				"inputFields": null,
+				"interfaces": [],
+				"enumValues": null,
+				"possibleTypes": null
+			},
+			{
+				"kind": "OBJECT",
+				"name": "job",
+				"description": null,
+				"fields": [
+					{
+						"name": "name",
+						"description": null,
+						"args": [],
+						"type": {
+							"kind": "JUNGLA",
+							"name": "String",
+							"ofType": null
+						}
+					}
+				],
+				"inputFields": null,
+				"interfaces": [],
+				"enumValues": null,
+				"possibleTypes": null
+			}
+		],
+		"directives": null
+	}
+}
