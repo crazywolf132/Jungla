@@ -1,4 +1,4 @@
-import Template from '../../../data/test.json';
+import Template from './base_introspection.json';
 import _ from 'lodash';
 
 const log = console.log;
