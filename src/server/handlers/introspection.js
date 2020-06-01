@@ -44,7 +44,7 @@ const generateDeepObject = (key, data, fieldList, ObjectList) => {
 				description: null,
 				args: [],
 				type: {
-					kind: 'JUNGLA',
+					kind: 'SCALAR',
 					name: capitalize(data[field]),
 					ofType: null,
 				},
@@ -58,7 +58,7 @@ const generateDeepObject = (key, data, fieldList, ObjectList) => {
 const generateIntrospectionOBJ = (data) => {
 	let result = introspection(data);
 
-	let final = Template;
+	let final = _.cloneDeep(Template);
 
 	let indexPosition = final.__schema.types.indexOf(
 		final['__schema'].types.filter((type) => type.name === 'Query')[0]
@@ -82,7 +82,7 @@ const generateIntrospectionOBJ = (data) => {
 				description: null,
 				args: [],
 				type: {
-					kind: 'JUNGLA',
+					kind: 'SCALAR',
 					name: capitalize(result[key]),
 					ofType: null,
 				},
