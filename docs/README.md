@@ -1,5 +1,32 @@
 # Jungla
 
-What is Jungla?
+## What is it?
 
-Jungla is a data manipulation tool. It is built to be able to extract data from any dataSet, into the format you require.
+Jungla is a data manipulation language built to enhance the capabilities of your pre-existing APIs.
+
+Jungla is a language inspired by GraphQL.
+
+## What Jungla looks like...
+
+```Jungla
+# "extensions.jungla"
+
+{
+    some {
+        deep {
+            down {
+                data {
+                    id is NUMBER,
+                    name is STRING,
+                    age,
+                    company {
+                        name,
+                        &address
+                    }
+                }
+            }
+        }
+    }
+}
+
+```
