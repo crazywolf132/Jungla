@@ -81,7 +81,9 @@ export const mimic = (websiteURL, routeName) => {
 					operationName !== null &&
 					operationName == 'IntrospectionQuery'
 				) {
-					return res.json(Introspection(body[0]));
+					return res.json({
+						data: Introspection(body[0]),
+					});
 				}
 				res.json(Jungla(req.body.query || '{}', body));
 			});
@@ -97,7 +99,7 @@ export const mimic = (websiteURL, routeName) => {
 					operationName == 'IntrospectionQuery'
 				) {
 					return res.json({
-						data: require('../../data/test.json'),
+						data: Introspection(body[0]),
 					});
 				}
 				res.json(Jungla(req.body.query || '{}', body));
