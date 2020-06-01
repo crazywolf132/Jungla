@@ -199,9 +199,6 @@ export default class Interpreter {
 				return String(obj1).includes(String(obj2));
 			case '=':
 			default:
-				log(obj1);
-				log(obj2);
-				log(obj1 === obj2);
 				return obj1 === obj2;
 		}
 	}
