@@ -74,7 +74,6 @@ export const mimic = (websiteURL, routeName) => {
 	const router = Router();
 
 	router.get('/*', (req, res) => {
-		console.log(req.body);
 		fetch(`${websiteURL}${req.params['0']}`)
 			.then((res) => res.json())
 			.then((body) => {
@@ -90,7 +89,6 @@ export const mimic = (websiteURL, routeName) => {
 
 	router.post('/*', (req, res) => {
 		const { operationName } = req.body;
-		console.log(req.body);
 		fetch(`${websiteURL}${req.params['0']}`)
 			.then((res) => res.json())
 			.then((body) => {
