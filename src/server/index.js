@@ -96,27 +96,6 @@ export const mimic = (websiteURL, routeName) => {
 					operationName !== null &&
 					operationName == 'IntrospectionQuery'
 				) {
-					let intro = Introspection(body[0]);
-					// return res.json({
-					// 	data: {
-					// 		__schema: {
-					// 			types: Object.keys(intro).map((item) => {
-					// 				return {
-					// 					name: item,
-					// 					kind: intro[item],
-					// 					description: '',
-					// 					fields: [],
-					// 					enumValues: [],
-					// 					possibleTypes: [],
-					// 				};
-					// 			}),
-					// 			queryType: {},
-					// 			mutationType: {},
-					// 			subscriptionType: {},
-					// 			directives: {},
-					// 		},
-					// 	},
-					// });
 					return res.json({
 						data: require('../../data/test.json'),
 					});
