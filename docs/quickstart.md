@@ -70,7 +70,7 @@ The `mimic` function is better explained [here](server/mimic)
 
 ## Client Side
 
-To use Jungla on a client device, you will either need to have a server using Jungla... or you use jungla clientside.
+To use Jungla on a client device, you will either need to have a server using Jungla... or you use jungla client side.
 
 When you use Jungla client-side, this means the client is doing the intensive work of converting the data to meet the structure you have requested. It will always be recommended to the language processing on the server side. Though this might not always be possible. More information can be found [here](language/client-side)
 
