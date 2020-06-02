@@ -1,4 +1,7 @@
-## Variables
+<p align="center">
+    <img src="./assets/img/Headers/Variables.svg" height="75px" alt="Variables"  title="Variables">
+</p>
+<br />
 
 !> All Variables must be defined before their use.
 
