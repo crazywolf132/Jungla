@@ -1,4 +1,6 @@
-# Jungla
+<p align="center">
+<img src="./assets/img/Jungla.svg" height="200px" alt="Jungla"  title="Jungla">
+</p>
 
 ## What is it?
 
