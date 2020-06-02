@@ -1,5 +1,5 @@
 <p align="center">
-<img src="./docs/assets/img/Jungla.svg" height="200px" alt="Jungla"  title="WQL Lang">
+<img src="./docs/assets/img/Jungla.svg" height="200px" alt="Jungla"  title="Jungla">
 </p>
 
 <b>Version</b> <small>1.2-Beta</small>
