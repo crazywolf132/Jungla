@@ -11,5 +11,5 @@
 
 <div class="buttons">
   <a href="https://github.com/crazywolf132/Jungla" target="_blank"><span>GitHub</span></a>
-  <a href="#/basics/README.md"><span>Get Started</span></a>
+  <a href="#/README.md"><span>Get Started</span></a>
 </div>
