@@ -1,4 +1,7 @@
-# Getting Started
+<p align="center">
+    <img src="./assets/img/Headers/Getting_Started.svg" height="75px" alt="Getting Started"  title="Getting Started">
+</p>
+<br />
 
 Jungla comes in the form of an NPM package to be easily installed into either a frontend or backend application.
 Jungla has no pre-requirements of your project and allows you to use both the Jungla Stack & Jungla Language independently
