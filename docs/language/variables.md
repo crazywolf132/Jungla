@@ -4,7 +4,7 @@
 
 ### Defining variables
 
-Variables in WQL, are slightly different to what some expect.
+Variables in Jungla, are slightly different to what some expect.
 All variables must begin with `@`, this indicates to the system to store
 it in memory and not add it to the output unless referenced
 
