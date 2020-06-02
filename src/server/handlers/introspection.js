@@ -1,8 +1,6 @@
 import Template from './base_introspection.json';
 import _ from 'lodash';
 
-const log = console.log;
-
 const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
 const introspection = (data) => {
@@ -65,8 +63,6 @@ const generateIntrospectionOBJ = (data) => {
 	);
 
 	let fieldList = final.__schema.types[indexPosition].fields;
-
-	log(Object.keys(result));
 
 	Object.keys(result).map((key) => {
 		if (result[key] instanceof Object) {
