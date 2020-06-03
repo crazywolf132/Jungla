@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="../assets/img/Headers/Syntax.svg" height="75px" alt="Syntax"  title="Syntax">
+    <img src="./assets/img/Headers/Syntax.svg" height="75px" alt="Syntax"  title="Syntax">
 </p>
 <br />
 
