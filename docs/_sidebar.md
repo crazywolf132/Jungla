@@ -12,8 +12,13 @@
     -   [Control Flow](language/controlflow.md)
     -   [Client Side](language/clientside.md)
     -   [Validator](language/validator.md)
+    -   [Imports](language/imports.md)
 
--   SERVER GUIDE
+-   ADVANCED GUIDE
+
+    -   [Converters](language/converters.md)
+
+*   SERVER GUIDE
 
     -   [Stack](sever/stack.md)
     -   [Mimic](server/mimic.md)
