@@ -30,6 +30,12 @@ export const TokenType = {
 	WILD: { klass: Token.Punctuator, name: '*' },
 	CONVERT: { klass: Token.Punctuator, name: '->' },
 	OR: { klass: Token.Punctuator, name: '||' },
+	SLASH: { klass: Token.Punctuator, name: '/' },
+
+	// Comments
+	COMMENT: { klass: Token.Punctuator, name: '//' },
+	BLOCKCOMMENT: { klass: Token.Punctuator, name: '/*' },
+	BLOCKCOMMENTEND: { klass: Token.Punctuator, name: '*/' },
 
 	// Keywords
 	NULL: { klass: Token.Keyword, name: 'null' },

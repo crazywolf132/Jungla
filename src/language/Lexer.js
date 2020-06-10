@@ -50,6 +50,10 @@ export default class Lexer {
 		return this.lookahead;
 	}
 
+	peekRaw(steps = 0) {
+		return this.source.charAt(this.pos + (1 + steps));
+	}
+
 	lex() {
 		const prev = this.lookahead;
 		this.lookahead = this.next();
@@ -68,7 +72,11 @@ export default class Lexer {
 		token.line = line;
 		token.column = this.pos - lineStart;
 
-		return token;
+		// If this token is a comment... we don't want to return it at all...
+		return token.type === TokenType.COMMENT ||
+			token.type === TokenType.BLOCKCOMMENT
+			? this.next()
+			: token;
 	}
 
 	scan() {
@@ -136,22 +144,64 @@ export default class Lexer {
 				++this.pos;
 				return { type: TokenType.PLUS };
 			case '*':
+				if (this.peekRaw() === '/') {
+					++this.pos;
+					++this.pos;
+					return { type: TokenType.BLOCKCOMMENTEND };
+				}
 				++this.pos;
 				return { type: TokenType.WILD };
 			case '-':
-				if (this.source.charAt(this.pos + 1) === '>') {
+				if (this.peekRaw() === '>') {
 					++this.pos;
 					++this.pos;
 					return { type: TokenType.CONVERT };
 				}
 				break;
 			case '|':
-				if (this.source.charAt(this.pos + 1) === '|') {
+				if (this.peekRaw() === '|') {
 					++this.pos;
 					++this.pos;
 					return { type: TokenType.OR };
 				}
 				break;
+
+			case '/':
+				if (this.peekRaw() === '/') {
+					// Going past those two characters '//'
+					++this.pos;
+					++this.pos;
+
+					while (
+						this.peekRaw(-1) !== '\n' &&
+						this.pos < this.source.length
+					) {
+						++this.pos;
+					}
+					// Going past the \n
+					++this.pos;
+					return { type: TokenType.COMMENT };
+				} else if (this.peekRaw() === '*') {
+					// Going past those two characters '/*'
+					++this.pos;
+					++this.pos;
+
+					do {
+						if (this.peekRaw() === '\n') this.line++;
+						++this.pos;
+					} while (
+						!(this.peekRaw(-1) === '*' && this.peekRaw() === '/') &&
+						this.pos < this.source.length
+					);
+					// Going past the '*/'
+					++this.pos;
+					++this.pos;
+
+					return { type: TokenType.BLOCKCOMMENT };
+				} else {
+					++this.pos;
+					return { type: TokenType.SLASH };
+				}
 		}
 
 		if (
