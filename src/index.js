@@ -4,6 +4,6 @@
  * that can be incorporated into project.
  */
 
-export { default as Langauge } from './language';
-export { default as Server } from './server';
+export { default as Language } from './language';
+export { Server } from './server';
 export { mimic } from './server';
