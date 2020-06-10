@@ -6,6 +6,9 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "",
+		"build": "babel src --out-dir lib --copy-files",
+		"build-language": "babel src/language --out-dir lib/language --copy-files",
+		"build-server": "babel src/server --out-dir lib/server --copy-files",
 		"dev": "nodemon --exec babel-node ./index.js"
 	},
 	"repository": {
@@ -32,6 +35,9 @@
 		"@babel/core": "^7.4.5",
 		"@babel/node": "^7.2.2",
 		"@babel/preset-env": "^7.4.5",
+		"@babel/cli": "^7.2.3",
+		"@babel/register": "^7.0.0",
+		"babel-core": "7.0.0-bridge.0",
 		"babel-eslint": "^10.0.3",
 		"babel-jest": "^24.8.0",
 		"babel-loader": "^8.0.5",
