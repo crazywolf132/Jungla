@@ -5,7 +5,18 @@
 
 ### Comments
 
-Jungla does NOT currently support any form of comments. This may be changed in a later version.
+Jungla supports both single line and block comments.
+
+```Jungla
+    // I'm a single line comment
+```
+
+```Jungla
+    /*
+        I'm a block
+        comment.
+    */
+```
 
 ### Import
 
@@ -31,7 +42,7 @@ This is a set of words and characters that cannot be used as variable names, jus
 ### Identifiers
 
 Identifiers in this language are case sensitive. They are used to define objects such as variables, classes and functions.
-An indentifier starts with a letter or an underscore, they can then procceed to use letters, numbers or underscores.
+An identifier starts with a letter or an underscore, they can then proceed to use letters, numbers or underscores.
 
 ```Jungla
     A_VALID_EXAMPLE
