@@ -17,7 +17,7 @@ var _cors = _interopRequireDefault(require("cors"));
 
 var _nodeFetch = _interopRequireDefault(require("node-fetch"));
 
-var _language = _interopRequireDefault(require("../language"));
+var _language = _interopRequireDefault(require("@jungla/language"));
 
 var _introspection = _interopRequireDefault(require("./handlers/introspection"));
 

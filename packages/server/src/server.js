@@ -4,7 +4,7 @@ import timeout from 'express-timeout-handler';
 import { json, urlencoded } from 'body-parser';
 import cors from 'cors';
 import fetch from 'node-fetch';
-import Jungla from '../language';
+import Jungla from '@jungla/language';
 import Introspection from './handlers/introspection';
 
 /*

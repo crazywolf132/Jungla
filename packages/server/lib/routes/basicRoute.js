@@ -11,7 +11,7 @@ var _files = require("../handlers/files");
 
 var _middleware = _interopRequireDefault(require("../handlers/middleware"));
 
-var _language = _interopRequireDefault(require("../../language"));
+var _language = _interopRequireDefault(require("@jungla/language"));
 
 var _introspection = _interopRequireDefault(require("../handlers/introspection"));
 

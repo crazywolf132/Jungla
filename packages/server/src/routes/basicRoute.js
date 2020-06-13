@@ -7,7 +7,7 @@
 import { Router } from 'express';
 import { getAllFiles } from '../handlers/files';
 import middleware from '../handlers/middleware';
-import Jungla from '../../language';
+import Jungla from '@jungla/language';
 import Introspection from '../handlers/introspection';
 
 const router = Router();
