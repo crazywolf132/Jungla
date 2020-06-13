@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.mimic = void 0;
+exports.default = exports.mimic = exports.enableDataRoute = void 0;
 
 var _express = _interopRequireWildcard(require("express"));
 
@@ -83,7 +83,11 @@ app.use(_expressTimeoutHandler.default.handler({
  
 */
 
-app.use('/', _basicRoute.default);
+const enableDataRoute = () => {
+  app.use('/', _basicRoute.default);
+};
+
+exports.enableDataRoute = enableDataRoute;
 
 const mimic = (websiteURL, routeName) => {
   const router = (0, _express.Router)();

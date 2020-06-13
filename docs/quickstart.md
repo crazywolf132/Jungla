@@ -18,13 +18,13 @@ Jungla Language is the scripting language required to access and manipulate your
 Install using yarn
 
 ```bash
-    yarn add jungla-stack
+    yarn add @jungla/stack
 ```
 
 or with NPM
 
 ```bash
-    npm add jungla-stack
+    npm add @jungla/stack
 ```
 
 ### Installing Jungla Language
@@ -32,13 +32,13 @@ or with NPM
 Install using yarn
 
 ```bash
-    yarn add jungla
+    yarn add @jungla/language
 ```
 
 or with NPM
 
 ```bash
-    npm add jungla
+    npm add @jungla/language
 ```
 
 ## Server Side
