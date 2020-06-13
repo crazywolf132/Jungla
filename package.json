@@ -4,6 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
+		"postinstall": "lerna bootstrap",
+		"release": "lerna publish --conventional-commits --message \"chore(npm): publish\"",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "",
 		"build": "babel src --out-dir lib --copy-files",
@@ -16,12 +18,12 @@
 		"url": "git+https://github.com/crazywolf132/Jungla.git"
 	},
 	"keywords": [],
-	"author": "",
+	"author": "Brayden Moon <crazywolf132@gmail.com> (https://github.com/crazywolf132)",
 	"license": "ISC",
 	"bugs": {
 		"url": "https://github.com/crazywolf132/Jungla/issues"
 	},
-	"homepage": "https://github.com/crazywolf132/Jungla#readme",
+	"homepage": "https://crazywolf132.github.io/Jungla/",
 	"dependencies": {
 		"body-parser": "^1.19.0",
 		"cors": "^2.8.5",
@@ -32,10 +34,10 @@
 		"node-fetch": "^2.6.0"
 	},
 	"devDependencies": {
+		"@babel/cli": "^7.2.3",
 		"@babel/core": "^7.4.5",
 		"@babel/node": "^7.2.2",
 		"@babel/preset-env": "^7.4.5",
-		"@babel/cli": "^7.2.3",
 		"@babel/register": "^7.0.0",
 		"babel-core": "7.0.0-bridge.0",
 		"babel-eslint": "^10.0.3",
@@ -43,6 +45,7 @@
 		"babel-loader": "^8.0.5",
 		"jest": "^24.8.0",
 		"jest-cli": "^24.8.0",
+		"lerna": "^3.22.1",
 		"nodemon": "^1.18.9"
 	}
 }
