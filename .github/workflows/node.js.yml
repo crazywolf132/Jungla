@@ -24,7 +24,12 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - working-directory: packages/language
-    - run: npm install
-    - run: npm ci
-    - run: npm run build --if-present
+    - name: Install
+      run: npm install
+      working-directory: ./packages/language
+    - name: Run CI
+      run: npm ci
+      working-directory: ./packages/language
+    - name: Install
+      run: npm run build --if-present
+      working-directory: ./packages/language
