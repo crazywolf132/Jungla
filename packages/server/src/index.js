@@ -2,6 +2,7 @@ import Jungla from '@jungla/language';
 
 export { default as Server } from './server';
 export { mimic } from './server';
+export { enableDataRoute } from './server';
 export { default as Middleware } from './handlers/middleware';
 
 export const Converter = (req, res, next) => {
