@@ -15,7 +15,7 @@
 	"homepage": "https://crazywolf132.github.io/Jungla/",
 	"scripts": {
 		"build": "babel src --out-dir lib --copy-files",
-		"prepublish": "rm -rf ./lib && yarn build && git add ./lib && git commit -m \"Updating for Release\" && git push"
+		"prepublish": "rm -rf ./lib && yarn build"
 	},
 	"dependencies": {
 		"body-parser": "^1.19.0",
@@ -43,5 +43,5 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"gitHead": "ac76a11d46b37cb767c2970e409bcd0b30cac56f"
+	"gitHead": "243232cd8bfbb94672f9bb783aa8a18e553e7980"
 }
