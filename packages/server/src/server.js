@@ -66,9 +66,8 @@ app.use(
  
 */
 
+import route from './routes/basicRoute';
 export const enableDataRoute = () => {
-	import route from './routes/basicRoute';
-
 	app.use('/', route);
 };
 
