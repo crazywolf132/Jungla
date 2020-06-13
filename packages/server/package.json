@@ -15,7 +15,7 @@
 	"homepage": "https://crazywolf132.github.io/Jungla/",
 	"scripts": {
 		"build": "babel src --out-dir lib --copy-files",
-		"prepublish": "yarn build"
+		"prepublish": "rm -rf ./lib && yarn build"
 	},
 	"dependencies": {
 		"body-parser": "^1.19.0",

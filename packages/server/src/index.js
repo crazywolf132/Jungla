@@ -1,4 +1,4 @@
-import Jungla from '../language';
+import Jungla from '@jungla/language';
 
 export { default as Server } from './server';
 export { mimic } from './server';
