@@ -185,10 +185,10 @@ export default class Interpreter {
 		return _.compact(data);
 	}
 
-	compare2(obj1, comparitor, obj2) {
+	compare2(obj1, comparator, obj2) {
 		obj1 = obj1 === 'true' ? true : obj1 === 'false' ? false : obj1;
 		obj2 = obj2 === 'true' ? true : obj2 === 'false' ? false : obj2;
-		switch (comparitor) {
+		switch (comparator) {
 			case '>':
 				return obj1 >= obj2;
 			case '<':
