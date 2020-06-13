@@ -39,5 +39,9 @@
 		"jest": "^24.8.0",
 		"jest-cli": "^24.8.0",
 		"nodemon": "^1.18.9"
-	}
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"gitHead": "5311cf99431944cfade5f8273303f18edca52256"
 }
