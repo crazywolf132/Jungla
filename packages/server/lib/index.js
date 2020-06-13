@@ -15,6 +15,12 @@ Object.defineProperty(exports, "mimic", {
     return _server.mimic;
   }
 });
+Object.defineProperty(exports, "enableDataRoute", {
+  enumerable: true,
+  get: function () {
+    return _server.enableDataRoute;
+  }
+});
 Object.defineProperty(exports, "Middleware", {
   enumerable: true,
   get: function () {
