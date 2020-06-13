@@ -30,6 +30,6 @@ jobs:
     - name: Run CI
       run: npm ci
       working-directory: ./packages/language
-    - name: Install
+    - name: Run Build
       run: npm run build --if-present
       working-directory: ./packages/language
