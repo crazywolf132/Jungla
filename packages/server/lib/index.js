@@ -23,7 +23,7 @@ Object.defineProperty(exports, "Middleware", {
 });
 exports.Converter = void 0;
 
-var _language = _interopRequireDefault(require("../language"));
+var _language = _interopRequireDefault(require("@jungla/language"));
 
 var _server = _interopRequireWildcard(require("./server"));
 
