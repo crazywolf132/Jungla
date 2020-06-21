@@ -142,7 +142,7 @@ export default class Interpreter {
 	flowControl(data, key, field) {
 		return this.compare2(
 			data[key],
-			field.ifelse._comparitor,
+			field.ifelse._comparator,
 			field.ifelse._check
 		)
 			? field.ifelse._if instanceof Object

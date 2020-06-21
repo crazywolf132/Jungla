@@ -102,7 +102,7 @@ export default class TaggedTemplateVisitor {
 			let _else = node.ifelse._else[0];
 			let _else_name = _else.name;
 			let result = {
-				_comparitor: node.ifelse.comparitor,
+				_comparator: node.ifelse.comparator,
 				_check: node.ifelse._check,
 				_if:
 					node.ifelse._if[0] instanceof Object &&

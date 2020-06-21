@@ -86,7 +86,7 @@ export default class Parser extends Lexer {
 
 	parseDefault() {
 		// TODO: Allow this to only work if we are sure it is a flow control statement.
-		let comparitor = this.expectMany(
+		let comparator = this.expectMany(
 			TokenType.EQUALS,
 			TokenType.GT,
 			TokenType.LT,
@@ -109,7 +109,7 @@ export default class Parser extends Lexer {
 				? this.parseFieldList()
 				: this.expect(this.lookahead.type).value;
 			return {
-				comparitor: comparitor.type.name,
+				comparator: comparator.type.name,
 				_check,
 				_if,
 				_else,
