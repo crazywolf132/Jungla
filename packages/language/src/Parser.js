@@ -292,8 +292,8 @@ export default class Parser extends Lexer {
 				return this.parseVar();
 			case TokenType.LT:
 				return this.parseVariable();
-			case TokenType.Number:
-			case TokenType.String:
+			case TokenType.NUMBER:
+			case TokenType.STRING:
 				return {
 					type: 'Literal',
 					value: this.lex().value,
