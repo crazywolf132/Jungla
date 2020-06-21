@@ -130,6 +130,15 @@ export default class Parser extends Lexer {
 	parseSize() {
 		this.expect(TokenType.LT);
 		let size = this.parseNumber();
+		if (this.eat(TokenType.COMMA)) {
+			// This means there is a start and finish position
+			// specified...
+
+			// We will return from straight inside this function...
+			let finishPos = this.parseNumber();
+			this.expect(TokenType.GT);
+			return [size, finishPos];
+		}
 		this.expect(TokenType.GT);
 		return size;
 	}
