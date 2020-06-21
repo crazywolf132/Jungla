@@ -281,7 +281,7 @@ export default class Parser extends Lexer {
 	parseAdd() {
 		this.expect(TokenType.PLUS);
 		let result = this.parseValue();
-		return { value: result };
+		return { value: result.type === 'Reference' ? result : result.value };
 	}
 
 	parseValue() {

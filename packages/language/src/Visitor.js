@@ -63,6 +63,9 @@ export default class TaggedTemplateVisitor {
 		if (node.add) {
 			field.add = node.add;
 
+			if (node.add.value instanceof Object) {
+				field.add.value = this.Reference(node.add.value).value || '';
+			}
 		}
 
 		if (node.fields.length > 0) {
@@ -99,6 +102,10 @@ export default class TaggedTemplateVisitor {
 		if (node.fields.length > 0) {
 			// Adding nameSymbol to each... as it isnt there.
 			field.fields = this.transformFields(node.fields);
+		}
+
+		if (node.value) {
+			field.value = node.value;
 		}
 
 		if (node.ifelse) {
