@@ -60,6 +60,11 @@ export default class TaggedTemplateVisitor {
 			field.sizeLimit = node.sizeLimit;
 		}
 
+		if (node.add) {
+			field.add = node.add;
+
+		}
+
 		if (node.fields.length > 0) {
 			field.fields = this.transformFields(node.fields);
 		} else if (node._fromIf) {

@@ -186,6 +186,7 @@ export default class Parser extends Lexer {
 			? this.parseConversion()
 			: null;
 		const sizeLimit = this.match(TokenType.LT) ? this.parseSize() : null;
+		const add = this.match(TokenType.PLUS) ? this.parseAdd() : null;
 		const listFields = this.eat(TokenType.COLON) ? this.parseList() : null;
 		const defaultValue = this.match(TokenType.EQUALS)
 			? this.parseDefault()
@@ -211,6 +212,7 @@ export default class Parser extends Lexer {
 			alias,
 			toConvert,
 			sizeLimit,
+			add,
 			RequiredType,
 			defaultValue,
 			fields,
@@ -248,28 +250,14 @@ export default class Parser extends Lexer {
 				TokenType.NOT,
 				TokenType.WILD
 			).type.name;
-			let value = this.expectMany(
-				TokenType.NUMBER,
-				TokenType.STRING,
-				TokenType.NULL,
-				TokenType.FALSE,
-				TokenType.TRUE
-			).value;
+			let value = this.parseValue().value;
 
 			if (this.eat(TokenType.OR)) {
 				do {
 					if (!Array.isArray(value)) {
 						value = [value];
 					}
-					value.push(
-						this.expectMany(
-							TokenType.NUMBER,
-							TokenType.STRING,
-							TokenType.NULL,
-							TokenType.FALSE,
-							TokenType.TRUE
-						).value
-					);
+					value.push(this.parseValue().value);
 				} while (this.eat(TokenType.OR));
 			}
 
@@ -288,6 +276,12 @@ export default class Parser extends Lexer {
 			TokenType.TYPE_LIST_KEYS,
 			TokenType.TYPE_STRING
 		).value;
+	}
+
+	parseAdd() {
+		this.expect(TokenType.PLUS);
+		let result = this.parseValue();
+		return { value: result };
 	}
 
 	parseValue() {

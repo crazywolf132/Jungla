@@ -183,6 +183,9 @@ export default class Interpreter {
 			}
 		}
 
+		if (field.add) {
+			final = `${final}${field.add.value}`;
+		}
 
 		return final;
 	}
