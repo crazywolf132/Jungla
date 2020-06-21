@@ -12,7 +12,7 @@ export default class TaggedTemplateVisitor {
 
 	transformFields(fields) {
 		const obj = {};
-		fields.forEach(f => {
+		fields.forEach((f) => {
 			if (f.hasOwnProperty(rootSymbol)) {
 				for (let field in f) {
 					obj[field] = f[field];
@@ -157,7 +157,7 @@ export const traverse = (
 	isArray = true
 ) => {
 	if (Array.isArray(parsed)) {
-		return parsed.map(node => travel(node, visitor));
+		return parsed.map((node) => travel(node, visitor));
 	} else {
 		return travel(parsed, visitor);
 	}
@@ -173,16 +173,18 @@ const travel = (node, visitor) => {
 	const type = node.type;
 	switch (type) {
 		case 'Query':
-			node.fields = node.fields.map(n => traverse(n, visitor, false));
+			node.fields = node.fields.map((n) => traverse(n, visitor, false));
 			break;
 		case 'Field':
-			node.fields = node.fields.map(n => traverse(n, visitor, false));
+			node.fields = node.fields.map((n) => traverse(n, visitor, false));
 			break;
 		case 'Var':
-			node.fields = node.fields.map(n => traverse(n, visitor, false));
+			node.fields = node.fields.map((n) => traverse(n, visitor, false));
 			break;
 		case 'List':
-			node.fields = node.listFields.map(n => traverse(n, visitor, false));
+			node.fields = node.listFields.map((n) =>
+				traverse(n, visitor, false)
+			);
 			break;
 	}
 

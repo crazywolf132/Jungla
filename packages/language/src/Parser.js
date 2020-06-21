@@ -99,12 +99,12 @@ export default class Parser extends Lexer {
 		if (this.eat(TokenType.QMARK)) {
 			// This means it is an if-else statement
 			let _check = _var;
-			// let _if = this.expect(this.lookahead.type).value;
+
 			let _if = this.match(TokenType.LBRACE)
 				? this.parseFieldList()
 				: this.expect(this.lookahead.type).value;
 			this.expect(TokenType.COLON);
-			// let _else = this.expect(this.lookahead.type).value;
+
 			let _else = this.match(TokenType.LBRACE)
 				? this.parseFieldList()
 				: this.expect(this.lookahead.type).value;
@@ -131,7 +131,6 @@ export default class Parser extends Lexer {
 		this.expect(TokenType.LT);
 		let size = this.parseNumber();
 		this.expect(TokenType.GT);
-
 		return size;
 	}
 

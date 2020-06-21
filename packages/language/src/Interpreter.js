@@ -6,11 +6,6 @@ export default class Interpreter {
 		this.ast = ast;
 		this.data = data;
 
-		// this.result = (!Array.isArray(this.data)
-		// 	? this.compile(this.ast, this.data)
-		// 	: this.data.map((d) => this.compile(this.ast, d))
-		// ).filter((result) => Object.keys(result).length >= 1);
-
 		this.result = !Array.isArray(this.data)
 			? this.compile(this.ast, this.data)
 			: this.data.map((d) => this.compile(this.ast, d));
