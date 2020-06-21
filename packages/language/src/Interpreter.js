@@ -166,10 +166,25 @@ export default class Interpreter {
 
 	basicField(data, field) {
 		return data != undefined
-			? data
+			? this.cleanBasicField(data, field)
 			: field.defaultValue
 			? field.defaultValue
 			: undefined;
+	}
+
+	cleanBasicField(data, field) {
+		let final = data;
+
+		if (field.sizeLimit) {
+			if (Array.isArray(field.sizeLimit)) {
+				final = data.slice(field.sizeLimit[0], field.sizeLimit[1]);
+			} else {
+				final = data.slice(0, field.sizeLimit);
+			}
+		}
+
+
+		return final;
 	}
 
 	hasKey(obj, keyName) {

@@ -201,6 +201,7 @@ export default class Parser extends Lexer {
 			name,
 			alias,
 			toConvert,
+			sizeLimit,
 			RequiredType,
 			defaultValue,
 			fields,
