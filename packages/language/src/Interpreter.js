@@ -81,6 +81,8 @@ export default class Interpreter {
 				} else if (key === 'fields') {
 					// We need to go into this object, and get its objects...
 					obj = this.compile(ast[key], data);
+				} else if (this.hasKey(ast[key], 'value')) {
+					obj[ast[key].alias || key] = ast[key].value;
 				} else if (this.hasKey(ast[key], 'ifelse')) {
 					// performing the ifstatement our self.
 					obj[ast[key].alias || key] = this.flowControl(

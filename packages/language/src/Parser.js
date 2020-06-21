@@ -330,6 +330,9 @@ export default class Parser extends Lexer {
 		const name = this.expect(TokenType.IDENTIFIER).value;
 		// Checking if it is an if-else statement or an obj with '{'
 		const ifelse = this.eat(TokenType.TILD) ? this.parseDefault() : null;
+		const value = this.eat(TokenType.EQUALS)
+			? this.parseValue().value
+			: null;
 		const fields = this.match(TokenType.LBRACE)
 			? this.parseFieldList()
 			: [];
@@ -338,6 +341,7 @@ export default class Parser extends Lexer {
 			type: 'Var',
 			name,
 			ifelse,
+			value,
 			fields,
 			isVar: true,
 		};
