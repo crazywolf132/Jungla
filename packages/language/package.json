@@ -15,7 +15,8 @@
 	"homepage": "https://crazywolf132.github.io/Jungla/",
 	"scripts": {
 		"build": "babel src --out-dir lib --copy-files",
-		"prepublish": "rm -rf ./lib && yarn build"
+		"prepublish": "rm -rf ./lib && yarn build",
+		"dev": "nodemon --exec babel-node ./index.js"
 	},
 	"dependencies": {
 		"lodash": "^4.17.15"
