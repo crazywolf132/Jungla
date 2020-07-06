@@ -59,7 +59,7 @@ Eg.
 {
     id,
     name
-}
+
 ```
 
 ?> If the field is not a list... it will still treat it like a list, and any fields your asking to be inside it... will all be `undefined`
