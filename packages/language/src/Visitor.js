@@ -48,8 +48,19 @@ export default class TaggedTemplateVisitor {
 			field.toConvert = node.toConvert;
 		}
 
-		if (node.defaultValue) {
-			field.defaultValue = node.defaultValue;
+		if (node.defaultValue != null) {
+			// if (node.defaultValue.type === 'Reference') {
+			// We now have the referenced information...
+			// let res = this.Reference(node.defaultValue);
+			// field.defaultValue = res;
+			// } else {
+			if (node.defaultValue.type === 'Reference') {
+				let res = this.Reference(node.defaultValue);
+				field.defaultValue = res;
+			} else {
+				field.defaultValue = node.defaultValue;
+			}
+			// }
 		}
 
 		if (node.RequiredType) {
@@ -84,7 +95,7 @@ export default class TaggedTemplateVisitor {
 	Reference(node) {
 		let field = this.quasis[node.name];
 
-		if (node.alias) {
+		if (node.alias && node.alias != null) {
 			field.alias = node.alias;
 		}
 
