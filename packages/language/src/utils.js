@@ -2,9 +2,9 @@ const utils = (module.exports = {});
 
 const log = console.log;
 const util = require('util');
-const inspect = data =>
+const inspect = (data) =>
 	util.inspect(data, false, null, true /* enable colors */);
 
-utils.log = data => {
+utils.log = (data) => {
 	log(inspect(data));
 };
