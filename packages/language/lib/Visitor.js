@@ -64,12 +64,31 @@ class TaggedTemplateVisitor {
       field.toConvert = node.toConvert;
     }
 
-    if (node.defaultValue) {
-      field.defaultValue = node.defaultValue;
+
+    if (node.defaultValue !== undefined) {
+      if (node.defaultValue && node.defaultValue.type === 'Reference') {
+        // We now have the referenced information...
+        let res = this.Reference(node.defaultValue);
+        field.defaultValue = res;
+      } else {
+        field.defaultValue = node.defaultValue;
+      }
     }
 
     if (node.RequiredType) {
       field.RequiredType = node.RequiredType;
+    }
+
+    if (node.sizeLimit) {
+      field.sizeLimit = node.sizeLimit;
+    }
+
+    if (node.add) {
+      field.add = node.add;
+
+      if (node.add.value instanceof Object) {
+        field.add.value = this.Reference(node.add.value).value || '';
+      }
     }
 
     if (node.fields.length > 0) {
@@ -110,13 +129,17 @@ class TaggedTemplateVisitor {
       field.fields = this.transformFields(node.fields);
     }
 
+    if (node.value) {
+      field.value = node.value;
+    }
+
     if (node.ifelse) {
       let _if = node.ifelse._if[0];
       let _if_name = _if.name;
       let _else = node.ifelse._else[0];
       let _else_name = _else.name;
       let result = {
-        _comparitor: node.ifelse.comparitor,
+        _comparator: node.ifelse.comparator,
         _check: node.ifelse._check,
         _if: node.ifelse._if[0] instanceof Object && node.ifelse._if[0].type ? this[node.ifelse._if[0].type](node.ifelse._if[0], true) : node.ifelse._if,
         _else: node.ifelse._else[0] instanceof Object && node.ifelse._else[0].type ? this[node.ifelse._else[0].type](node.ifelse._else[0], true) : node.ifelse._else
