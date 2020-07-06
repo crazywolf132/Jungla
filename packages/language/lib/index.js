@@ -41,6 +41,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _default(format, data) {
   const parsed = new _Parser.default(format).parseQuery();
   const query = (0, _Visitor.traverse)(parsed, new _Visitor.default(null, null));
+  (0, _utils.log)(query);
+  console.log('==================================================');
   const interpreted = new _Interpreter.default(query, data);
   return interpreted.result;
 }
