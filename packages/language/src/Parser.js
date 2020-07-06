@@ -1,7 +1,21 @@
-import Lexer from './Lexer.js';
+import Lexer from './Lexer';
 import { TokenType } from './TokenType.js';
 
-import { readFile, readFileSync } from 'fs';
+let readFileSync;
+
+try {
+	readFileSync = require('fs').readFileSync;
+} catch (e) {
+	if (e.code !== 'MODULE_NOT_FOUND') {
+		throw e;
+	}
+	readFileSync = () => {
+		// We are making a function that wont actually return anything more than an error message.
+		return `{
+			error = "# Imports can only be handled server side for security reasons..."
+		}`;
+	};
+}
 
 export default class Parser extends Lexer {
 	match(type) {
@@ -95,7 +109,8 @@ export default class Parser extends Lexer {
 		);
 		// checking if the is a value, then a '?'... as this would
 		// imply that we are dealing with an if statement.
-		let _var = this.expect(this.lookahead.type).value;
+		// let _var = this.expect(this.lookahead.type).value;
+		let _var = this.parseValue();
 		if (this.eat(TokenType.QMARK)) {
 			// This means it is an if-else statement
 			let _check = _var;
@@ -115,7 +130,7 @@ export default class Parser extends Lexer {
 				_else,
 			};
 		} else {
-			return _var;
+			return _var.type === 'Reference' ? _var : _var.value;
 		}
 	}
 
@@ -186,6 +201,7 @@ export default class Parser extends Lexer {
 			? this.parseConversion()
 			: null;
 		const sizeLimit = this.match(TokenType.LT) ? this.parseSize() : null;
+		// TODO::: CREATE THE 'ADD' FIELD HERE
 		const add = this.match(TokenType.PLUS) ? this.parseAdd() : null;
 		const listFields = this.eat(TokenType.COLON) ? this.parseList() : null;
 		const defaultValue = this.match(TokenType.EQUALS)
@@ -298,6 +314,8 @@ export default class Parser extends Lexer {
 					type: 'Literal',
 					value: this.lex().value,
 				};
+			case TokenType.LBRACE:
+				return this.parseQuery();
 			case TokenType.NULL:
 			case TokenType.TRUE:
 			case TokenType.FALSE:
