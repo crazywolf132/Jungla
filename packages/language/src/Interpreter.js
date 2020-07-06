@@ -71,6 +71,7 @@ export default class Interpreter {
 						ast[key],
 						data[key] || data
 					);
+					// console.log('key ::: ', key);
 					if (children != undefined)
 						obj[ast[key].alias || key] = children;
 				} else if (this.hasKey(ast[key], 'RequiredType')) {
@@ -100,7 +101,8 @@ export default class Interpreter {
 					// We are just treating this like a regular data retrieval
 					obj[ast[key].alias || key] = this.basicField(
 						data[key] == undefined ? null : data[key],
-						ast[key]
+						ast[key],
+						data
 					);
 				}
 			}
@@ -119,6 +121,7 @@ export default class Interpreter {
 		return Array.isArray(data)
 			? this.cleanList(
 					data.map((d, index) => {
+						// TODO... check if sizeLimit is an array... if it is, we need to create an offset to start from...
 						if (index + 1 <= (field.sizeLimit || data.length))
 							return this.compile(field.fields, d);
 						else return null;
@@ -166,15 +169,26 @@ export default class Interpreter {
 			: children.join(' ');
 	}
 
-	basicField(data, field) {
+	basicField(data, field, dataAll) {
+		// console.log(field);
 		return data != undefined
 			? this.cleanBasicField(data, field)
-			: field.defaultValue
-			? field.defaultValue
+			: field.defaultValue !== undefined
+			? this.default(field.defaultValue, data)
 			: undefined;
 	}
 
+	default(field, data) {
+		field = field.value
+			? field.value
+			: field.fields
+			? this.compile(field.fields, data)
+			: field;
+		return field;
+	}
+
 	cleanBasicField(data, field) {
+		// console.log('RUNNING BASIC ::: ', field);
 		let final = data;
 
 		if (field.sizeLimit) {
