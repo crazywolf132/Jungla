@@ -68,13 +68,16 @@ class Interpreter {
         if (this.hasKey(ast[key], 'isList')) {
           obj[ast[key].alias || key] = this.listType(data[key], ast[key]);
         } else if (this.hasKey(ast[key], 'fields')) {
-          let children = this.handleChildren(ast[key], data[key] || data);
+          let children = this.handleChildren(ast[key], data[key] || data); // console.log('key ::: ', key);
+
           if (children != undefined) obj[ast[key].alias || key] = children;
         } else if (this.hasKey(ast[key], 'RequiredType')) {
           obj[ast[key].alias || key] = this.requiredType(data[key], ast[key]);
         } else if (key === 'fields') {
           // We need to go into this object, and get its objects...
           obj = this.compile(ast[key], data);
+        } else if (this.hasKey(ast[key], 'value')) {
+          obj[ast[key].alias || key] = ast[key].value;
         } else if (this.hasKey(ast[key], 'ifelse')) {
           // performing the ifstatement our self.
           obj[ast[key].alias || key] = this.flowControl(data, key, ast[key]);
@@ -83,7 +86,7 @@ class Interpreter {
           obj[ast[key].alias || key] = this.convertToType(data[key] || data, ast[key]);
         } else {
           // We are just treating this like a regular data retrieval
-          obj[ast[key].alias || key] = this.basicField(data[key] == undefined ? null : data[key], ast[key]);
+          obj[ast[key].alias || key] = this.basicField(data[key] == undefined ? null : data[key], ast[key], data);
         }
       }
     });
@@ -96,6 +99,7 @@ class Interpreter {
 
   listType(data, field) {
     return Array.isArray(data) ? this.cleanList(data.map((d, index) => {
+      // TODO... check if sizeLimit is an array... if it is, we need to create an offset to start from...
       if (index + 1 <= (field.sizeLimit || data.length)) return this.compile(field.fields, d);else return null;
     })) : this.compile(field.fields, data || {});
   }
@@ -111,7 +115,7 @@ class Interpreter {
   }
 
   flowControl(data, key, field) {
-    return this.compare2(data[key], field.ifelse._comparitor, field.ifelse._check) ? field.ifelse._if instanceof Object ? this.compile(field.ifelse._if, data) : data[field.ifelse._if] || field.ifelse._if : field.ifelse._else instanceof Object ? this.compile(field.ifelse._else, data) : data[field.ifelse._else] || field.ifelse._else;
+    return this.compare2(data[key], field.ifelse._comparator, field.ifelse._check) ? field.ifelse._if instanceof Object ? this.compile(field.ifelse._if, data) : data[field.ifelse._if] || field.ifelse._if : field.ifelse._else instanceof Object ? this.compile(field.ifelse._else, data) : data[field.ifelse._else] || field.ifelse._else;
   }
 
   convertToType(data, field) {
@@ -119,8 +123,33 @@ class Interpreter {
     return field.toConvert === 'LIST' ? children : field.toConvert === 'LIST_KEYS' ? Object.keys(data) : children.join(' ');
   }
 
-  basicField(data, field) {
-    return data != undefined ? data : field.defaultValue ? field.defaultValue : undefined;
+  basicField(data, field, dataAll) {
+    // console.log(field);
+    return data != undefined ? this.cleanBasicField(data, field) : field.defaultValue !== undefined ? field.defaultValue : undefined;
+  }
+
+  default(data, field, dataAll) {
+    if (field.fields) data = this.compile(field.fields, dataAll);
+    return data;
+  }
+
+  cleanBasicField(data, field) {
+    // console.log('RUNNING BASIC ::: ', field);
+    let final = data;
+
+    if (field.sizeLimit) {
+      if (Array.isArray(field.sizeLimit)) {
+        final = data.slice(field.sizeLimit[0], field.sizeLimit[1]);
+      } else {
+        final = data.slice(0, field.sizeLimit);
+      }
+    }
+
+    if (field.add) {
+      final = `${final}${field.add.value}`;
+    }
+
+    return final;
   }
 
   hasKey(obj, keyName) {
