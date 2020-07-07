@@ -1,6 +1,6 @@
 {
 	"name": "@jungla/stack",
-	"version": "0.0.9",
+	"version": "0.0.10",
 	"main": "./lib",
 	"repository": {
 		"type": "git",
@@ -18,14 +18,14 @@
 		"prepublish": "rm -rf ./lib && yarn build"
 	},
 	"dependencies": {
+		"@jungla/language": "^0.1.0",
 		"body-parser": "^1.19.0",
 		"cors": "^2.8.5",
 		"express": "^4.17.1",
 		"express-timeout-handler": "^2.2.0",
 		"lodash": "^4.17.15",
 		"morgan": "^1.10.0",
-		"node-fetch": "^2.6.0",
-		"@jungla/language": "0.0.6"
+		"node-fetch": "^2.6.0"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.2.3",
