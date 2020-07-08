@@ -98,12 +98,32 @@ export default class Interpreter {
 						ast[key]
 					);
 				} else {
-					// We are just treating this like a regular data retrieval
-					obj[ast[key].alias || key] = this.basicField(
-						data[key] == undefined ? null : data[key],
-						ast[key],
-						data
-					);
+					if (Array.isArray(ast[key])) {
+						ast[key].map((subItem) => {
+							// TODO : try and send it back through the compiler instead of copy and paste of code.
+							if (this.hasKey(subItem, 'fields')) {
+								let children = this.handleChildren(
+									subItem,
+									data[key] || data
+								);
+
+								obj[subItem.alias] = children;
+							} else {
+								obj[subItem.alias] = this.basicField(
+									data[key] == undefined ? null : data[key],
+									subItem,
+									data
+								);
+							}
+						});
+					} else {
+						// We are just treating this like a regular data retrieval
+						obj[ast[key].alias || key] = this.basicField(
+							data[key] == undefined ? null : data[key],
+							ast[key],
+							data
+						);
+					}
 				}
 			}
 		});
@@ -171,6 +191,10 @@ export default class Interpreter {
 
 	basicField(data, field, dataAll) {
 		// console.log(field);
+		if (Array.isArray(field)) {
+			console.log('IM AN ARRAY');
+			console.log(field);
+		}
 		return data != undefined
 			? this.cleanBasicField(data, field)
 			: field.defaultValue !== undefined

@@ -118,7 +118,7 @@ class Parser extends _Lexer.default {
     // imply that we are dealing with an if statement.
     // let _var = this.expect(this.lookahead.type).value;
 
-    let _var = this.parseValue().value;
+    let _var = this.parseValue();
 
     if (this.eat(_TokenType.TokenType.QMARK)) {
       // This means it is an if-else statement
@@ -137,7 +137,7 @@ class Parser extends _Lexer.default {
         _else
       };
     } else {
-      return _var;
+      return _var.type === 'Reference' ? _var : _var.value;
     }
   }
 

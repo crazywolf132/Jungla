@@ -125,12 +125,12 @@ class Interpreter {
 
   basicField(data, field, dataAll) {
     // console.log(field);
-    return data != undefined ? this.cleanBasicField(data, field) : field.defaultValue !== undefined ? field.defaultValue : undefined;
+    return data != undefined ? this.cleanBasicField(data, field) : field.defaultValue !== undefined ? this.default(field.defaultValue, data) : undefined;
   }
 
-  default(data, field, dataAll) {
-    if (field.fields) data = this.compile(field.fields, dataAll);
-    return data;
+  default(field, data) {
+    field = field.value ? field.value : field.fields ? this.compile(field.fields, data) : field;
+    return field;
   }
 
   cleanBasicField(data, field) {
