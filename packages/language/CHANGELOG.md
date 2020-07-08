@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/crazywolf132/Jungla/compare/@jungla/language@0.1.0...@jungla/language@0.2.0) (2020-07-08)
+
+
+### Features
+
+* Can now have multiple items from the same location ([a87e772](https://github.com/crazywolf132/Jungla/commit/a87e77289950466d684e85047f77f8b020471f4e))
+
+
+
+
+
 # [0.1.0](https://github.com/crazywolf132/Jungla/compare/@jungla/language@0.0.6...@jungla/language@0.1.0) (2020-07-07)
 
 ### Bug Fixes
