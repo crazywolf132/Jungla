@@ -18,11 +18,7 @@ export default class TaggedTemplateVisitor {
 					obj[field] = f[field];
 				}
 			} else {
-				if (obj[f[nameSymbol]] !== undefined) {
-					obj[f[nameSymbol]] = [obj[f[nameSymbol]], f];
-				} else {
-					obj[f[nameSymbol]] = f;
-				}
+				obj[f[nameSymbol]] = f;
 			}
 		});
 
