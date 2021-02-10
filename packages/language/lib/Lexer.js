@@ -54,6 +54,9 @@ class Lexer {
 
       case 'OBJ':
         return _TokenType.TokenType.TYPE_OBJ;
+
+      case 'COUNT':
+        return _TokenType.TokenType.TYPE_COUNT;
     }
 
     return _TokenType.TokenType.IDENTIFIER;

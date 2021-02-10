@@ -1,0 +1,9 @@
+{
+  industries as data : [
+    {
+      id,
+      description as name,
+      categories (id = 2)
+    }
+  ]
+}

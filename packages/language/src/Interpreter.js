@@ -140,14 +140,24 @@ export default class Interpreter {
 	listType(data, field) {
 		return Array.isArray(data)
 			? this.cleanList(
-					data.map((d, index) => {
-						// TODO... check if sizeLimit is an array... if it is, we need to create an offset to start from...
-						if (index + 1 <= (field.sizeLimit || data.length))
-							return this.compile(field.fields, d);
-						else return null;
+					this.shortenList(data, field).filter((item) => {
+						if (this.hasKey(field, 'params')) {
+							return this.meetsParams(item, field.params);
+						}
+
+						return true;
 					})
 			  )
 			: this.compile(field.fields, data || {});
+	}
+
+	shortenList(data, field) {
+		return data.map((d, index) => {
+			// TODO... check if sizeLimit is an array... if it is, we need to create an offset to start from...
+			if (index + 1 <= (field.sizeLimit || data.length))
+				return this.compile(field.fields, d);
+			else return null;
+		});
 	}
 
 	handleChildren(key, data) {
@@ -182,24 +192,57 @@ export default class Interpreter {
 		let children = Object.values(this.compile(field, data)).filter(
 			(i) => i != undefined
 		);
+
+		// console.log({ children, data });
+
 		return field.toConvert === 'LIST'
 			? children
 			: field.toConvert === 'LIST_KEYS'
 			? Object.keys(data)
-			: children.join(' ');
+			: field.toConvert === 'COUNT'
+			? Array.isArray(data)
+				? data.length
+				: 0
+			: (children ?? data).join(' ');
 	}
 
 	basicField(data, field, dataAll) {
 		// console.log(field);
-		if (Array.isArray(field)) {
-			console.log('IM AN ARRAY');
-			console.log(field);
+		if (Array.isArray(data)) {
+			return data.length >= 1
+				? this.basicList(data, field)
+				: field.defaultValue !== undefined
+				? this.default(field.defaultValue, data)
+				: undefined;
 		}
 		return data != undefined
 			? this.cleanBasicField(data, field)
 			: field.defaultValue !== undefined
 			? this.default(field.defaultValue, data)
 			: undefined;
+	}
+
+	basicList(data, field) {
+		// This is used to modify a list value, that doesnt have a set structure
+		/**
+		 * EG:
+		 * categories <1>
+		 * INSTEAD OF
+		 * categories : <1> {blah, blah}
+		 */
+
+		return data
+			.filter((item) =>
+				this.hasKey(field, 'params')
+					? this.meetsParams(item, field.params)
+						? true
+						: false
+					: true
+			)
+			.filter((d, index) => {
+				// TODO... check if sizeLimit is an array... if it is, we need to create an offset to start from...
+				return index + 1 <= (field.sizeLimit || data.length);
+			});
 	}
 
 	default(field, data) {

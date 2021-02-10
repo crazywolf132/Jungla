@@ -1,4 +1,4 @@
-import express, { Router } from 'express';
+import express, { request, Router } from 'express';
 import morgan from 'morgan';
 import timeout from 'express-timeout-handler';
 import { json, urlencoded } from 'body-parser';
@@ -71,28 +71,31 @@ export const enableDataRoute = () => {
 	app.use('/', route);
 };
 
-export const mimic = (websiteURL, routeName) => {
+export const mimic = (websiteURL, routeName, options = {}) => {
 	const router = Router();
 
-	router.get('/*', (req, res) => {
-		fetch(`${websiteURL}${req.params['0']}`)
-			.then((res) => res.json())
-			.then((body) => {
-				if (
-					operationName !== null &&
-					operationName == 'IntrospectionQuery'
-				) {
-					return res.json({
-						data: Introspection(body[0]),
-					});
-				}
-				res.json(Jungla(req.body.query || '{}', body));
-			});
-	});
+	router.all('/*', (req, res) => {
+		const { method, body: requestBody } = req;
+		const { operationName } = requestBody;
 
-	router.post('/*', (req, res) => {
-		const { operationName } = req.body;
-		fetch(`${websiteURL}${req.params['0']}`)
+		// We are going to determine if this is a real `post` (just an example) request
+		// or a JUNGLA request.
+
+		const realRequest =
+			Object.keys(requestBody).length >= 1 &&
+			!Object.keys(requestBody).includes('query');
+
+		fetch(`${websiteURL}${req.params['0']}`, {
+			method: realRequest ? method : 'get',
+			body: realRequest ? JSON.stringify(requestBody) : undefined,
+			headers: { 'Content-Type': 'application/json' },
+			...options,
+		})
+			.then((response) =>
+				response.status === 200
+					? response
+					: res.status(response.status).end(response.statusText)
+			)
 			.then((res) => res.json())
 			.then((body) => {
 				if (
@@ -103,8 +106,9 @@ export const mimic = (websiteURL, routeName) => {
 						data: Introspection(body[0]),
 					});
 				}
-				res.json(Jungla(req.body.query || '{}', body));
-			});
+				if (body) res.json(Jungla(req.body.query || '{}', body));
+			})
+			.catch((e) => e);
 	});
 
 	app.use(routeName, router);

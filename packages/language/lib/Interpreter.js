@@ -85,8 +85,20 @@ class Interpreter {
           // Converting the data, then assigning it to the key
           obj[ast[key].alias || key] = this.convertToType(data[key] || data, ast[key]);
         } else {
-          // We are just treating this like a regular data retrieval
-          obj[ast[key].alias || key] = this.basicField(data[key] == undefined ? null : data[key], ast[key], data);
+          if (Array.isArray(ast[key])) {
+            ast[key].map(subItem => {
+              // TODO : try and send it back through the compiler instead of copy and paste of code.
+              if (this.hasKey(subItem, 'fields')) {
+                let children = this.handleChildren(subItem, data[key] || data);
+                obj[subItem.alias] = children;
+              } else {
+                obj[subItem.alias] = this.basicField(data[key] == undefined ? null : data[key], subItem, data);
+              }
+            });
+          } else {
+            // We are just treating this like a regular data retrieval
+            obj[ast[key].alias || key] = this.basicField(data[key] == undefined ? null : data[key], ast[key], data);
+          }
         }
       }
     });
@@ -98,10 +110,20 @@ class Interpreter {
   }
 
   listType(data, field) {
-    return Array.isArray(data) ? this.cleanList(data.map((d, index) => {
+    return Array.isArray(data) ? this.cleanList(this.shortenList(data, field).filter(item => {
+      if (this.hasKey(field, 'params')) {
+        return this.meetsParams(item, field.params);
+      }
+
+      return true;
+    })) : this.compile(field.fields, data || {});
+  }
+
+  shortenList(data, field) {
+    return data.map((d, index) => {
       // TODO... check if sizeLimit is an array... if it is, we need to create an offset to start from...
       if (index + 1 <= (field.sizeLimit || data.length)) return this.compile(field.fields, d);else return null;
-    })) : this.compile(field.fields, data || {});
+    });
   }
 
   handleChildren(key, data) {
@@ -119,13 +141,33 @@ class Interpreter {
   }
 
   convertToType(data, field) {
-    let children = Object.values(this.compile(field, data)).filter(i => i != undefined);
-    return field.toConvert === 'LIST' ? children : field.toConvert === 'LIST_KEYS' ? Object.keys(data) : children.join(' ');
+    let children = Object.values(this.compile(field, data)).filter(i => i != undefined); // console.log({ children, data });
+
+    return field.toConvert === 'LIST' ? children : field.toConvert === 'LIST_KEYS' ? Object.keys(data) : field.toConvert === 'COUNT' ? Array.isArray(data) ? data.length : 0 : (children !== null && children !== void 0 ? children : data).join(' ');
   }
 
   basicField(data, field, dataAll) {
     // console.log(field);
+    if (Array.isArray(data)) {
+      return data.length >= 1 ? this.basicList(data, field) : field.defaultValue !== undefined ? this.default(field.defaultValue, data) : undefined;
+    }
+
     return data != undefined ? this.cleanBasicField(data, field) : field.defaultValue !== undefined ? this.default(field.defaultValue, data) : undefined;
+  }
+
+  basicList(data, field) {
+    // This is used to modify a list value, that doesnt have a set structure
+
+    /**
+     * EG:
+     * categories <1>
+     * INSTEAD OF
+     * categories : <1> {blah, blah}
+     */
+    return data.filter(item => this.hasKey(field, 'params') ? this.meetsParams(item, field.params) ? true : false : true).filter((d, index) => {
+      // TODO... check if sizeLimit is an array... if it is, we need to create an offset to start from...
+      return index + 1 <= (field.sizeLimit || data.length);
+    });
   }
 
   default(field, data) {

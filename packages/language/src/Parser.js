@@ -217,6 +217,7 @@ export default class Parser extends Lexer {
 				type: 'List',
 				name,
 				alias,
+				params,
 				sizeLimit,
 				listFields,
 			};
@@ -290,7 +291,8 @@ export default class Parser extends Lexer {
 		return this.expectMany(
 			TokenType.TYPE_LIST,
 			TokenType.TYPE_LIST_KEYS,
-			TokenType.TYPE_STRING
+			TokenType.TYPE_STRING,
+			TokenType.TYPE_COUNT
 		).value;
 	}
 

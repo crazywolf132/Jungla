@@ -186,6 +186,10 @@ class TaggedTemplateVisitor {
       field.alias = node.alias;
     }
 
+    if (node.params) {
+      field.params = node.params;
+    }
+
     return field;
   }
 

@@ -48,4 +48,5 @@ export const TokenType = {
 	TYPE_LIST: { klass: Token.Keyword, name: 'list' },
 	TYPE_LIST_KEYS: { klass: Token.Keyword, name: 'list_keys' },
 	TYPE_OBJ: { klass: Token.Keyword, name: 'obj' },
+	TYPE_COUNT: { klass: Token.Keyword, name: 'count' },
 };

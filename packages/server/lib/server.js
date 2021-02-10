@@ -89,33 +89,74 @@ const enableDataRoute = () => {
 
 exports.enableDataRoute = enableDataRoute;
 
-const mimic = (websiteURL, routeName) => {
+const mimic = (websiteURL, routeName, options = {}) => {
   const router = (0, _express.Router)();
-  router.get('/*', (req, res) => {
-    (0, _nodeFetch.default)(`${websiteURL}${req.params['0']}`).then(res => res.json()).then(body => {
-      if (operationName !== null && operationName == 'IntrospectionQuery') {
-        return res.json({
-          data: (0, _introspection.default)(body[0])
-        });
-      }
-
-      res.json((0, _language.default)(req.body.query || '{}', body));
-    });
-  });
-  router.post('/*', (req, res) => {
+  router.all('/*', (req, res) => {
+    const {
+      method,
+      body: requestBody
+    } = req;
     const {
       operationName
-    } = req.body;
-    (0, _nodeFetch.default)(`${websiteURL}${req.params['0']}`).then(res => res.json()).then(body => {
+    } = requestBody; // We are going to determine if this is a real `post` (just an example) request
+    // or a JUNGLA request.
+
+    const realRequest = Object.keys(requestBody).length >= 1 && !Object.keys(requestBody).includes('query');
+    (0, _nodeFetch.default)(`${websiteURL}${req.params['0']}`, {
+      method: realRequest ? method : 'get',
+      body: realRequest ? JSON.stringify(requestBody) : undefined,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      ...options
+    }).then(response => response.status === 200 ? response : res.status(response.status).end(response.statusText)).then(res => res.json()).then(body => {
       if (operationName !== null && operationName == 'IntrospectionQuery') {
         return res.json({
           data: (0, _introspection.default)(body[0])
         });
       }
 
-      res.json((0, _language.default)(req.body.query || '{}', body));
-    });
-  });
+      if (body) res.json((0, _language.default)(req.body.query || '{}', body));
+    }).catch(e => e);
+  }); // router.get('/*', (req, res) => {
+  // 	const { operationName } = req.body;
+  // 	fetch(`${websiteURL}${req.params['0']}`, options)
+  // 		.then((response) =>
+  // 			response.status === 200
+  // 				? response
+  // 				: res.status(response.status).end(response.statusText)
+  // 		)
+  // 		.then((res) => res.json())
+  // 		.then((body) => {
+  // 			if (
+  // 				operationName !== null &&
+  // 				operationName == 'IntrospectionQuery'
+  // 			) {
+  // 				return res.json({
+  // 					data: Introspection(body[0]),
+  // 				});
+  // 			}
+  // 			if (body) res.json(Jungla(req.body.query || '{}', body));
+  // 		})
+  // 		.catch((e) => e);
+  // });
+  // router.post('/*', (req, res) => {
+  // 	const { operationName } = req.body;
+  // 	fetch(`${websiteURL}${req.params['0']}`, options)
+  // 		.then((res) => res.json())
+  // 		.then((body) => {
+  // 			if (
+  // 				operationName !== null &&
+  // 				operationName == 'IntrospectionQuery'
+  // 			) {
+  // 				return res.json({
+  // 					data: Introspection(body[0]),
+  // 				});
+  // 			}
+  // 			res.json(Jungla(req.body.query || '{}', body));
+  // 		});
+  // });
+
   app.use(routeName, router);
 };
 

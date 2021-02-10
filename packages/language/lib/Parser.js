@@ -212,6 +212,7 @@ class Parser extends _Lexer.default {
         type: 'List',
         name,
         alias,
+        params,
         sizeLimit,
         listFields
       };
@@ -283,7 +284,7 @@ class Parser extends _Lexer.default {
 
   parseConversion() {
     // Should have already consumed the `->` conversion character.
-    return this.expectMany(_TokenType.TokenType.TYPE_LIST, _TokenType.TokenType.TYPE_LIST_KEYS, _TokenType.TokenType.TYPE_STRING).value;
+    return this.expectMany(_TokenType.TokenType.TYPE_LIST, _TokenType.TokenType.TYPE_LIST_KEYS, _TokenType.TokenType.TYPE_STRING, _TokenType.TokenType.TYPE_COUNT).value;
   }
 
   parseAdd() {

@@ -171,6 +171,10 @@ const TokenType = {
   TYPE_OBJ: {
     klass: _Token.Token.Keyword,
     name: 'obj'
+  },
+  TYPE_COUNT: {
+    klass: _Token.Token.Keyword,
+    name: 'count'
   }
 };
 exports.TokenType = TokenType;
