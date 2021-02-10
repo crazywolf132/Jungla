@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/crazywolf132/Jungla/compare/@jungla/language@0.2.2...@jungla/language@0.2.3) (2021-02-10)
+
+
+### Reverts
+
+* Revert "chore(npm): publish" ([b336ed5](https://github.com/crazywolf132/Jungla/commit/b336ed5acd34c7afdcca32a25c364f9c9b849271))
+
+
+
+
+
 ## [0.2.2](https://github.com/crazywolf132/Jungla/compare/@jungla/language@0.2.2...@jungla/language@0.2.2) (2021-02-10)
 
 
