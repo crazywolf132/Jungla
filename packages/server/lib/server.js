@@ -118,45 +118,7 @@ const mimic = (websiteURL, routeName, options = {}) => {
 
       if (body) res.json((0, _language.default)(req.body.query || '{}', body));
     }).catch(e => e);
-  }); // router.get('/*', (req, res) => {
-  // 	const { operationName } = req.body;
-  // 	fetch(`${websiteURL}${req.params['0']}`, options)
-  // 		.then((response) =>
-  // 			response.status === 200
-  // 				? response
-  // 				: res.status(response.status).end(response.statusText)
-  // 		)
-  // 		.then((res) => res.json())
-  // 		.then((body) => {
-  // 			if (
-  // 				operationName !== null &&
-  // 				operationName == 'IntrospectionQuery'
-  // 			) {
-  // 				return res.json({
-  // 					data: Introspection(body[0]),
-  // 				});
-  // 			}
-  // 			if (body) res.json(Jungla(req.body.query || '{}', body));
-  // 		})
-  // 		.catch((e) => e);
-  // });
-  // router.post('/*', (req, res) => {
-  // 	const { operationName } = req.body;
-  // 	fetch(`${websiteURL}${req.params['0']}`, options)
-  // 		.then((res) => res.json())
-  // 		.then((body) => {
-  // 			if (
-  // 				operationName !== null &&
-  // 				operationName == 'IntrospectionQuery'
-  // 			) {
-  // 				return res.json({
-  // 					data: Introspection(body[0]),
-  // 				});
-  // 			}
-  // 			res.json(Jungla(req.body.query || '{}', body));
-  // 		});
-  // });
-
+  });
   app.use(routeName, router);
 };
 
