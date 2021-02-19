@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.15](https://github.com/crazywolf132/Jungla/compare/@jungla/stack@0.0.14...@jungla/stack@0.0.15) (2021-02-19)
+
+
+### Bug Fixes
+
+* Input limit now upped to 50mb ([27aebf4](https://github.com/crazywolf132/Jungla/commit/27aebf40d41d1ee2d8fa01e01e620a3e95b2f6e9))
+
+
+
+
+
 ## [0.0.14](https://github.com/crazywolf132/Jungla/compare/@jungla/stack@0.0.13...@jungla/stack@0.0.14) (2021-02-10)
 
 
