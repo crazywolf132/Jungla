@@ -33,7 +33,7 @@ const corsOptions = {
 	'Access-Control-Expose-Headers': '*',
 };
 
-app.use(json());
+app.use(json({ limit: '50mb' }));
 app.use(urlencoded({ extended: true }));
 app.use('*', cors(corsOptions));
 app.use((req, res, next) => {
