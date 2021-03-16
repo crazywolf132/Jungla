@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/crazywolf132/Jungla/compare/@jungla/stack@0.0.15...@jungla/stack@0.1.0) (2021-03-16)
+
+
+### Features
+
+* Allow for custom headers to be added from request ([89eff75](https://github.com/crazywolf132/Jungla/commit/89eff75a21544ae03c188c2a12b7affe44cd1679))
+
+
+
+
+
 ## [0.0.15](https://github.com/crazywolf132/Jungla/compare/@jungla/stack@0.0.14...@jungla/stack@0.0.15) (2021-02-19)
 
 

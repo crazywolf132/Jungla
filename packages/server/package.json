@@ -1,6 +1,6 @@
 {
 	"name": "@jungla/stack",
-	"version": "0.0.15",
+	"version": "0.1.0",
 	"main": "./lib",
 	"repository": {
 		"type": "git",
