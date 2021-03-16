@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/crazywolf132/Jungla/compare/@jungla/stack@0.1.0...@jungla/stack@0.2.0) (2021-03-16)
+
+
+### Features
+
+* CORS now optional ([953d3c2](https://github.com/crazywolf132/Jungla/commit/953d3c28a6acb83b1ed86d6559b48f8e3165ca8e))
+
+
+
+
+
 # [0.1.0](https://github.com/crazywolf132/Jungla/compare/@jungla/stack@0.0.15...@jungla/stack@0.1.0) (2021-03-16)
 
 
