@@ -77,6 +77,15 @@ export const mimic = (websiteURL, routeName, options = {}) => {
 	router.all('/*', (req, res) => {
 		const { method, body: requestBody } = req;
 		const { operationName } = requestBody;
+		const additionalHeaders = {};
+
+		if (options.copyHeaders) {
+			options.copyHeaders.forEach((header) => {
+				additionalHeaders[header] = JSON.stringify(
+					req.headers[header] ?? {}
+				);
+			});
+		}
 
 		// We are going to determine if this is a real `post` (just an example) request
 		// or a JUNGLA request.
@@ -88,7 +97,10 @@ export const mimic = (websiteURL, routeName, options = {}) => {
 		fetch(`${websiteURL}${req.params['0']}`, {
 			method: realRequest ? method : 'get',
 			body: realRequest ? JSON.stringify(requestBody) : undefined,
-			headers: { 'Content-Type': 'application/json' },
+			headers: {
+				'Content-Type': 'application/json',
+				...additionalHeaders,
+			},
 			...options,
 		})
 			.then((response) =>

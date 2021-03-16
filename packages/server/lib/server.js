@@ -54,7 +54,9 @@ const corsOptions = {
   // some legacy browsers (IE11, various SmartTVs) choke on 204
   'Access-Control-Expose-Headers': '*'
 };
-app.use((0, _bodyParser.json)());
+app.use((0, _bodyParser.json)({
+  limit: '50mb'
+}));
 app.use((0, _bodyParser.urlencoded)({
   extended: true
 }));
@@ -98,15 +100,26 @@ const mimic = (websiteURL, routeName, options = {}) => {
     } = req;
     const {
       operationName
-    } = requestBody; // We are going to determine if this is a real `post` (just an example) request
+    } = requestBody;
+    const additionalHeaders = {};
+
+    if (options.copyHeaders) {
+      options.copyHeaders.forEach(header => {
+        var _req$headers$header;
+
+        additionalHeaders[header] = JSON.stringify((_req$headers$header = req.headers[header]) !== null && _req$headers$header !== void 0 ? _req$headers$header : {});
+      });
+    } // We are going to determine if this is a real `post` (just an example) request
     // or a JUNGLA request.
+
 
     const realRequest = Object.keys(requestBody).length >= 1 && !Object.keys(requestBody).includes('query');
     (0, _nodeFetch.default)(`${websiteURL}${req.params['0']}`, {
       method: realRequest ? method : 'get',
       body: realRequest ? JSON.stringify(requestBody) : undefined,
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        ...additionalHeaders
       },
       ...options
     }).then(response => response.status === 200 ? response : res.status(response.status).end(response.statusText)).then(res => res.json()).then(body => {
