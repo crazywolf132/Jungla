@@ -21,6 +21,12 @@ Object.defineProperty(exports, "enableDataRoute", {
     return _server.enableDataRoute;
   }
 });
+Object.defineProperty(exports, "defaultCors", {
+  enumerable: true,
+  get: function () {
+    return _server.defaultCors;
+  }
+});
 Object.defineProperty(exports, "Middleware", {
   enumerable: true,
   get: function () {

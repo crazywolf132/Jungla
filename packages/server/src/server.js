@@ -25,26 +25,9 @@ if (process.env.NODE_ENV !== 'test') {
 	app.use(morgan('dev'));
 }
 
-const corsOptions = {
-	origin: '*',
-	credentials: true,
-	methods: ['GET', 'POST', 'OPTIONS'],
-	optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-	'Access-Control-Expose-Headers': '*',
-};
-
 app.use(json({ limit: '50mb' }));
 app.use(urlencoded({ extended: true }));
-app.use('*', cors(corsOptions));
-app.use((req, res, next) => {
-	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Expose-Headers', '*');
-	res.header(
-		'Access-Control-Allow-Headers',
-		'Origin, X-Requested-With, Content-Type, Accept'
-	);
-	next();
-});
+
 app.use(
 	timeout.handler({
 		timeout: 60000,
@@ -67,6 +50,27 @@ app.use(
 */
 
 import route from './routes/basicRoute';
+
+export const defaultCors = () => {
+	const corsOptions = {
+		origin: '*',
+		credentials: true,
+		methods: ['GET', 'POST', 'OPTIONS'],
+		optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+		'Access-Control-Expose-Headers': '*',
+	};
+	app.use('*', cors(corsOptions));
+	app.use((req, res, next) => {
+		res.header('Access-Control-Allow-Origin', '*');
+		res.header('Access-Control-Expose-Headers', '*');
+		res.header(
+			'Access-Control-Allow-Headers',
+			'Origin, X-Requested-With, Content-Type, Accept'
+		);
+		next();
+	});
+};
+
 export const enableDataRoute = () => {
 	app.use('/', route);
 };
