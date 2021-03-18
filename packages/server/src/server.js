@@ -93,10 +93,10 @@ export const mimic = (websiteURL, routeName, options = {}) => {
 
 		// We are going to determine if this is a real `post` (just an example) request
 		// or a JUNGLA request.
-
 		const realRequest =
-			Object.keys(requestBody).length >= 1 &&
-			!Object.keys(requestBody).includes('query');
+			(Object.keys(requestBody).length >= 1 &&
+				!Object.keys(requestBody).includes('query')) ||
+			Object.keys(requestBody).length === 0;
 
 		fetch(`${websiteURL}${req.params['0']}`, {
 			method: realRequest ? method : 'get',

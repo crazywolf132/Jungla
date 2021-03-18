@@ -118,7 +118,7 @@ const mimic = (websiteURL, routeName, options = {}) => {
     // or a JUNGLA request.
 
 
-    const realRequest = Object.keys(requestBody).length >= 1 && !Object.keys(requestBody).includes('query');
+    const realRequest = Object.keys(requestBody).length >= 1 && !Object.keys(requestBody).includes('query') || Object.keys(requestBody).length === 0;
     (0, _nodeFetch.default)(`${websiteURL}${req.params['0']}`, {
       method: realRequest ? method : 'get',
       body: realRequest ? JSON.stringify(requestBody) : undefined,
