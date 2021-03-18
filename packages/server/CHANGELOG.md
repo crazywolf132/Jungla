@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/crazywolf132/Jungla/compare/@jungla/stack@0.2.1...@jungla/stack@0.2.2) (2021-03-18)
+
+
+### Bug Fixes
+
+* Critical fix with request body ([4ee8530](https://github.com/crazywolf132/Jungla/commit/4ee8530c0b6ec1e0b56d1824a32054c93d899ef3))
+
+
+
+
+
 ## [0.2.1](https://github.com/crazywolf132/Jungla/compare/@jungla/stack@0.2.0...@jungla/stack@0.2.1) (2021-03-18)
 
 
