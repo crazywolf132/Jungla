@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/crazywolf132/Jungla/compare/@jungla/stack@0.2.0...@jungla/stack@0.2.1) (2021-03-18)
+
+
+### Bug Fixes
+
+* Fixed issue with false realRequest = false ([a6cf3c4](https://github.com/crazywolf132/Jungla/commit/a6cf3c4e73ff04698b4a0d91b8d4d883748d6f7a))
+
+
+
+
+
 # [0.2.0](https://github.com/crazywolf132/Jungla/compare/@jungla/stack@0.1.0...@jungla/stack@0.2.0) (2021-03-16)
 
 
