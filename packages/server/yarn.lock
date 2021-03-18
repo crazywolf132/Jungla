@@ -1011,10 +1011,10 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@jungla/language@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@jungla/language/-/language-0.2.1.tgz#f39ac3eea5f1c339bb87ca021c214074d88cb258"
-  integrity sha512-INzMHSZLp4+wuJAEXWZvvIU7yQRYpQo6vhC121ydItw5igSKEH3dnMrNGlT4jgux9S53SpmIiGRlUJ8ISS/n4g==
+"@jungla/language@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@jungla/language/-/language-0.2.3.tgz#a33703041da50ed755602dfcf5a62d35c92b9ae7"
+  integrity sha512-Wm2wo/P0F89yEfCxBiTa9R0p1pgooCgIDgWVkyedL6SIN8CzUw22atPUpa8QSNIwGdo2lgDdjrm5KYeReGqGEQ==
   dependencies:
     lodash "^4.17.15"
 
@@ -3767,7 +3767,7 @@ node-environment-flags@^1.0.5:
     object.getownpropertydescriptors "^2.0.3"
     semver "^5.7.0"
 
-node-fetch@^2.6.0:
+node-fetch@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
   integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
