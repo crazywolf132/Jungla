@@ -121,7 +121,7 @@ const mimic = (websiteURL, routeName, options = {}) => {
     const realRequest = Object.keys(requestBody).length >= 1 && !Object.keys(requestBody).includes('query') || Object.keys(requestBody).length === 0;
     (0, _nodeFetch.default)(`${websiteURL}${req.params['0']}`, {
       method: realRequest ? method : 'get',
-      body: realRequest ? JSON.stringify(requestBody) : undefined,
+      body: realRequest && Object.keys(requestBody).length >= 1 ? JSON.stringify(requestBody) : undefined,
       headers: {
         'Content-Type': 'application/json',
         ...additionalHeaders

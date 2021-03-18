@@ -100,7 +100,10 @@ export const mimic = (websiteURL, routeName, options = {}) => {
 
 		fetch(`${websiteURL}${req.params['0']}`, {
 			method: realRequest ? method : 'get',
-			body: realRequest ? JSON.stringify(requestBody) : undefined,
+			body:
+				realRequest && Object.keys(requestBody).length >= 1
+					? JSON.stringify(requestBody)
+					: undefined,
 			headers: {
 				'Content-Type': 'application/json',
 				...additionalHeaders,
