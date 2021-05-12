@@ -39,6 +39,8 @@ export default class Lexer {
 				return TokenType.TYPE_OBJ;
 			case 'COUNT':
 				return TokenType.TYPE_COUNT;
+			case '...':
+				return TokenType.ELLIPSIS;
 		}
 
 		return TokenType.IDENTIFIER;
@@ -209,6 +211,7 @@ export default class Lexer {
 		if (
 			ch === '_' ||
 			ch === '$' ||
+			ch === '.' ||
 			('a' <= ch && ch <= 'z') ||
 			('A' <= ch && ch <= 'Z')
 		) {
@@ -241,6 +244,7 @@ export default class Lexer {
 			if (
 				ch === '_' ||
 				ch === '$' ||
+				ch === '.' ||
 				('a' <= ch && ch <= 'z') ||
 				('A' <= ch && ch <= 'Z') ||
 				('0' <= ch && ch <= '9')

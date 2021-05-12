@@ -95,7 +95,7 @@ export default class Parser extends Lexer {
 	}
 
 	parseNumber() {
-		return this.expect(TokenType.NUMBER).value;
+		return this.expectMany(TokenType.NUMBER, TokenType.ELLIPSIS).value;
 	}
 
 	parseDefault() {
@@ -169,6 +169,8 @@ export default class Parser extends Lexer {
 
 	parseFieldList() {
 		this.expect(TokenType.LBRACE);
+		// before we begin... we are going to check to see if there is a query instead...
+		// const params = this.eat(TokenType.LPAREN) ? this.parseParams() : null;
 
 		const fields = [];
 		let first = true;
@@ -184,6 +186,13 @@ export default class Parser extends Lexer {
 				fields.push(this.parseReference());
 			} else if (this.match(TokenType.AT)) {
 				fields.push(this.parseVar());
+			} else if (this.match(TokenType.LPAREN)) {
+				this.eat(TokenType.LPAREN);
+				let params = this.parseParams();
+				let inside = this.parseFieldList();
+				inside.map((i) => {
+					fields.push({ ...i, params });
+				});
 			} else {
 				fields.push(this.parseField());
 			}
@@ -201,7 +210,6 @@ export default class Parser extends Lexer {
 			? this.parseConversion()
 			: null;
 		const sizeLimit = this.match(TokenType.LT) ? this.parseSize() : null;
-		// TODO::: CREATE THE 'ADD' FIELD HERE
 		const add = this.match(TokenType.PLUS) ? this.parseAdd() : null;
 		const listFields = this.eat(TokenType.COLON) ? this.parseList() : null;
 		const defaultValue = this.match(TokenType.EQUALS)

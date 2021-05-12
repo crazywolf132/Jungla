@@ -31,6 +31,7 @@ export const TokenType = {
 	CONVERT: { klass: Token.Punctuator, name: '->' },
 	OR: { klass: Token.Punctuator, name: '||' },
 	SLASH: { klass: Token.Punctuator, name: '/' },
+	ELLIPSIS: { klass: Token.Punctuator, name: '...' },
 
 	// Comments
 	COMMENT: { klass: Token.Punctuator, name: '//' },

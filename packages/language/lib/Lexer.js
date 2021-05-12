@@ -57,6 +57,9 @@ class Lexer {
 
       case 'COUNT':
         return _TokenType.TokenType.TYPE_COUNT;
+
+      case '...':
+        return _TokenType.TokenType.ELLIPSIS;
     }
 
     return _TokenType.TokenType.IDENTIFIER;
@@ -292,7 +295,7 @@ class Lexer {
 
     }
 
-    if (ch === '_' || ch === '$' || 'a' <= ch && ch <= 'z' || 'A' <= ch && ch <= 'Z') {
+    if (ch === '_' || ch === '$' || ch === '.' || 'a' <= ch && ch <= 'z' || 'A' <= ch && ch <= 'Z') {
       return this.scanWord();
     }
 
@@ -321,7 +324,7 @@ class Lexer {
     while (this.pos < this.source.length) {
       let ch = this.source.charAt(this.pos);
 
-      if (ch === '_' || ch === '$' || 'a' <= ch && ch <= 'z' || 'A' <= ch && ch <= 'Z' || '0' <= ch && ch <= '9') {
+      if (ch === '_' || ch === '$' || ch === '.' || 'a' <= ch && ch <= 'z' || 'A' <= ch && ch <= 'Z' || '0' <= ch && ch <= '9') {
         this.pos++;
       } else {
         break;

@@ -109,7 +109,7 @@ class Parser extends _Lexer.default {
   }
 
   parseNumber() {
-    return this.expect(_TokenType.TokenType.NUMBER).value;
+    return this.expectMany(_TokenType.TokenType.NUMBER, _TokenType.TokenType.ELLIPSIS).value;
   }
 
   parseDefault() {
@@ -170,7 +170,9 @@ class Parser extends _Lexer.default {
   }
 
   parseFieldList() {
-    this.expect(_TokenType.TokenType.LBRACE);
+    this.expect(_TokenType.TokenType.LBRACE); // before we begin... we are going to check to see if there is a query instead...
+    // const params = this.eat(TokenType.LPAREN) ? this.parseParams() : null;
+
     const fields = [];
     let first = true;
 
@@ -185,6 +187,15 @@ class Parser extends _Lexer.default {
         fields.push(this.parseReference());
       } else if (this.match(_TokenType.TokenType.AT)) {
         fields.push(this.parseVar());
+      } else if (this.match(_TokenType.TokenType.LPAREN)) {
+        this.eat(_TokenType.TokenType.LPAREN);
+        let params = this.parseParams();
+        let inside = this.parseFieldList();
+        inside.map(i => {
+          fields.push({ ...i,
+            params
+          });
+        });
       } else {
         fields.push(this.parseField());
       }
@@ -199,8 +210,7 @@ class Parser extends _Lexer.default {
     const params = this.eat(_TokenType.TokenType.LPAREN) ? this.parseParams() : null;
     const alias = this.eat(_TokenType.TokenType.AS) ? this.parseIdentifier() : null;
     const toConvert = this.eat(_TokenType.TokenType.CONVERT) ? this.parseConversion() : null;
-    const sizeLimit = this.match(_TokenType.TokenType.LT) ? this.parseSize() : null; // TODO::: CREATE THE 'ADD' FIELD HERE
-
+    const sizeLimit = this.match(_TokenType.TokenType.LT) ? this.parseSize() : null;
     const add = this.match(_TokenType.TokenType.PLUS) ? this.parseAdd() : null;
     const listFields = this.eat(_TokenType.TokenType.COLON) ? this.parseList() : null;
     const defaultValue = this.match(_TokenType.TokenType.EQUALS) ? this.parseDefault() : null;

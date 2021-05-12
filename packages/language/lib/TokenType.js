@@ -118,6 +118,10 @@ const TokenType = {
     klass: _Token.Token.Punctuator,
     name: '/'
   },
+  ELLIPSIS: {
+    klass: _Token.Token.Punctuator,
+    name: '...'
+  },
   // Comments
   COMMENT: {
     klass: _Token.Token.Punctuator,
