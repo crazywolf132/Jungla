@@ -1011,13 +1011,6 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@jungla/language@^0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@jungla/language/-/language-0.2.3.tgz#a33703041da50ed755602dfcf5a62d35c92b9ae7"
-  integrity sha512-Wm2wo/P0F89yEfCxBiTa9R0p1pgooCgIDgWVkyedL6SIN8CzUw22atPUpa8QSNIwGdo2lgDdjrm5KYeReGqGEQ==
-  dependencies:
-    lodash "^4.17.15"
-
 "@nicolo-ribaudo/chokidar-2@2.1.8-no-fsevents":
   version "2.1.8-no-fsevents"
   resolved "https://registry.yarnpkg.com/@nicolo-ribaudo/chokidar-2/-/chokidar-2-2.1.8-no-fsevents.tgz#da7c3996b8e6e19ebd14d82eaced2313e7769f9b"
