@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.6](https://github.com/crazywolf132/Jungla/compare/@jungla/language@0.2.5...@jungla/language@0.2.6) (2021-05-13)
+
+
+### Bug Fixes
+
+* Now wont return undefined or null objects ([d805855](https://github.com/crazywolf132/Jungla/commit/d8058555513adb46977b5d011a9db2f8995f9f7c))
+
+
+
+
+
 ## [0.2.5](https://github.com/crazywolf132/Jungla/compare/@jungla/language@0.2.4...@jungla/language@0.2.5) (2021-05-12)
 
 **Note:** Version bump only for package @jungla/language
