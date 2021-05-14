@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.8](https://github.com/crazywolf132/Jungla/compare/@jungla/language@0.2.7...@jungla/language@0.2.8) (2021-05-14)
+
+
+### Bug Fixes
+
+* Fixed constant empty results bug ([c6a93f4](https://github.com/crazywolf132/Jungla/commit/c6a93f4aad72d763a3a6784a8caffc3685de9850))
+
+
+
+
+
 ## [0.2.7](https://github.com/crazywolf132/Jungla/compare/@jungla/language@0.2.6...@jungla/language@0.2.7) (2021-05-13)
 
 

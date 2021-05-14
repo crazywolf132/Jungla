@@ -1,6 +1,6 @@
 {
 	"name": "@jungla/stack",
-	"version": "0.2.6",
+	"version": "0.2.7",
 	"main": "./lib",
 	"repository": {
 		"type": "git",
@@ -18,7 +18,7 @@
 		"prepublish": "rm -rf ./lib && yarn build"
 	},
 	"dependencies": {
-		"@jungla/language": "^0.2.7",
+		"@jungla/language": "^0.2.8",
 		"body-parser": "^1.19.0",
 		"cors": "^2.8.5",
 		"express": "^4.17.1",
