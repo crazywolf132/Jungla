@@ -34,6 +34,7 @@ const dive = obj => {
       newObj[key] = value;
     }
   });
+  return Object.keys(newObj).length >= 1 ? newObj : undefined;
 };
 
 class Interpreter {
