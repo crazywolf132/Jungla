@@ -45,7 +45,8 @@ class Interpreter {
   constructor(ast, data) {
     this.ast = ast;
     this.data = data;
-    this.result = !Array.isArray(this.data) ? (0, _core.default)(this.ast, this.data) : this.data.map(d => (0, _core.default)(this.ast, d)).filter(i => Object.keys(i).length >= 1).map(dive).filter(i => i);
+    this.result = !Array.isArray(this.data) ? (0, _core.default)(this.ast, this.data) : this.data.map(d => (0, _core.default)(this.ast, d)).filter(i => Object.keys(i).length >= 1); // .map(dive)
+    // .filter((i) => i);
   }
 
 }
