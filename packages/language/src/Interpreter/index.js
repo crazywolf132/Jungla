@@ -3,14 +3,17 @@ import Core from './core';
 import { log } from '../utils';
 
 // To remove all cases of empty obj's
-const dive = (obj) => {
+const dive = (obj, depth = 0) => {
 	const newObj = {};
 
 	Object.keys(obj).forEach((key) => {
 		const value = obj[key];
 
 		if (typeof value === 'object' && Object.keys(value).length >= 1) {
-			const deepDiveResult = dive(value) ?? {};
+			if (depth === 2) {
+				newObj[key] = value;
+			}
+			const deepDiveResult = dive(value, depth++) ?? {};
 			if (Object.keys(deepDiveResult).length >= 1) {
 				// This means that there are valid children here...
 				newObj[key] = deepDiveResult;

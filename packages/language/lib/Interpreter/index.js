@@ -14,7 +14,7 @@ var _utils = require("../utils");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // To remove all cases of empty obj's
-const dive = obj => {
+const dive = (obj, depth = 0) => {
   const newObj = {};
   Object.keys(obj).forEach(key => {
     const value = obj[key];
@@ -22,7 +22,11 @@ const dive = obj => {
     if (typeof value === 'object' && Object.keys(value).length >= 1) {
       var _dive;
 
-      const deepDiveResult = (_dive = dive(value)) !== null && _dive !== void 0 ? _dive : {};
+      if (depth === 2) {
+        newObj[key] = value;
+      }
+
+      const deepDiveResult = (_dive = dive(value, depth++)) !== null && _dive !== void 0 ? _dive : {};
 
       if (Object.keys(deepDiveResult).length >= 1) {
         // This means that there are valid children here...
