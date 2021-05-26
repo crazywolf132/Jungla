@@ -19,7 +19,7 @@
 		"dev": "nodemon --exec babel-node ./index.js"
 	},
 	"dependencies": {
-		"lodash": "^4.17.15"
+		"lodash": "^4.17.21"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.2.3",
