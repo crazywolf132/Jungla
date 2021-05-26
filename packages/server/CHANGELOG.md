@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.9](https://github.com/crazywolf132/Jungla/compare/@jungla/stack@0.2.8...@jungla/stack@0.2.9) (2021-05-26)
+
+**Note:** Version bump only for package @jungla/stack
+
+
+
+
+
 ## [0.2.8](https://github.com/crazywolf132/Jungla/compare/@jungla/stack@0.2.7...@jungla/stack@0.2.8) (2021-05-26)
 
 
