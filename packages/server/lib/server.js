@@ -98,10 +98,11 @@ exports.enableDataRoute = enableDataRoute;
 
 const mimic = (websiteURL, routeName, options = {}) => {
   const router = (0, _express.Router)();
-  router.all('/*', (req, res) => {
+  router.all('/*', async (req, res) => {
     const {
       method,
-      body: requestBody
+      body: requestBody,
+      headers: oldHeaders
     } = req;
     const {
       operationName
@@ -119,23 +120,53 @@ const mimic = (websiteURL, routeName, options = {}) => {
 
 
     const realRequest = Object.keys(requestBody).length >= 1 && !Object.keys(requestBody).includes('query') || Object.keys(requestBody).length === 0;
-    (0, _nodeFetch.default)(`${websiteURL}${req.params['0']}`, {
-      method: realRequest ? method : 'get',
-      body: realRequest && Object.keys(requestBody).length >= 1 ? JSON.stringify(requestBody) : undefined,
-      headers: {
-        'Content-Type': 'application/json',
-        ...additionalHeaders
-      },
-      ...options
-    }).then(response => response.status === 200 ? response : res.status(response.status).end(response.statusText)).then(res => res.json()).then(body => {
+
+    try {
+      const response = await (0, _nodeFetch.default)(`${websiteURL}${req.params['0']}`, {
+        method: realRequest ? method : 'get',
+        body: realRequest && Object.keys(requestBody).length >= 1 ? JSON.stringify(requestBody) : undefined,
+        headers: {
+          'content-type': 'application/json; charset=utf-8',
+          ...additionalHeaders
+        }
+      });
+
+      if (response.status !== 200) {
+        return res.status(response.status).end(response.statusText);
+      }
+
+      let body;
+
+      if (response.headers.get('content-type').includes('application/json')) {
+        body = await response.json();
+      } else {
+        body = await response.buffer();
+      }
+
       if (operationName !== null && operationName == 'IntrospectionQuery') {
         return res.json({
           data: (0, _introspection.default)(body[0])
         });
       }
 
-      if (body) res.json((0, _language.default)(req.body.query || '{}', body));
-    }).catch(e => e);
+      const tempHeaders = {};
+      const responseHeaders = response.headers.raw();
+      Object.keys(responseHeaders).forEach(headerKey => {
+        const val = responseHeaders[headerKey];
+        tempHeaders[headerKey] = Array.isArray(val) ? val[0] : val;
+      });
+      res.set({ ...tempHeaders
+      }); // res.set('content-type', response.headers.get('content-type'));
+      // Only going to bother with the JUNGLA part if the response is json... otherwise it is pointless wasting time
+
+      if (response.headers.get('content-type').includes('application/json')) {
+        var _body;
+
+        res.json((0, _language.default)(req.body.query || '{}', (_body = body) !== null && _body !== void 0 ? _body : {}));
+      } else {
+        res.end(body);
+      }
+    } catch {}
   });
   app.use(routeName, router);
 };
