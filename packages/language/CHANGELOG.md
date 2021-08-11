@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.10](https://github.com/crazywolf132/Jungla/compare/@jungla/language@0.2.9...@jungla/language@0.2.10) (2021-05-26)
+
+
+### Bug Fixes
+
+* temporarily removed the `deep` function ([b0923cf](https://github.com/crazywolf132/Jungla/commit/b0923cfa60ec3e637d9bfb6ecdc556763e67495c))
+
+
+
+
+
+## [0.2.9](https://github.com/crazywolf132/Jungla/compare/@jungla/language@0.2.8...@jungla/language@0.2.9) (2021-05-26)
+
+
+### Bug Fixes
+
+* Fixed issues with application/json ([6740b4a](https://github.com/crazywolf132/Jungla/commit/6740b4a49b3cea45967f025ecf3c25f8bb737df3))
+
+
+
+
+
 ## [0.2.8](https://github.com/crazywolf132/Jungla/compare/@jungla/language@0.2.7...@jungla/language@0.2.8) (2021-05-14)
 
 
