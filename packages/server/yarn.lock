@@ -1011,10 +1011,10 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@jungla/language@^0.2.9":
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/@jungla/language/-/language-0.2.9.tgz#f6c4cf766be2246ebfad3a86a89566914f4be00c"
-  integrity sha512-PBeaJBbV+Liys1bYoOASJn54AgbmHufXdI/c3SFe4vPZTGmUold61wSRgNHagdkPSSVSCOKmlxLxCzgs8vY9pA==
+"@jungla/language@^0.2.10":
+  version "0.2.10"
+  resolved "https://registry.yarnpkg.com/@jungla/language/-/language-0.2.10.tgz#2547172615453525b9abb3515e4a3ed477a4ae2b"
+  integrity sha512-uU6+xwvROlgdvULZrgyHOyrxqpP/yPRCwsSOm7me9+rnufP/bYHLzbaxdVyFr9+2nVGHzg13I0rsEYHiH3Tlng==
   dependencies:
     lodash "^4.17.15"
 
@@ -4060,9 +4060,9 @@ path-key@^2.0.0, path-key@^2.0.1:
   integrity sha1-QRyttXTFoUDTpLGRDUDYDMn0C0A=
 
 path-parse@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.6.tgz#d62dbb5679405d72c4737ec58600e9ddcf06d24c"
-  integrity sha512-GSmOT2EbHrINBf9SR7CDELwlJ8AENk3Qn7OikK4nFYAu3Ote2+JYNVvkpAEQm3/TLNEJFD/xZJjzyxg3KBWOzw==
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.7.tgz#fbc114b60ca42b30d9daf5858e4bd68bbedb6735"
+  integrity sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==
 
 path-to-regexp@0.1.7:
   version "0.1.7"
